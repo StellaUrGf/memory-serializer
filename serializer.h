@@ -605,11 +605,6 @@ namespace utils {
             } else throw std::runtime_error("failed to open file");
         }
     }
-
-    // Compile-time check for C++ version; if not C++20 or later, emit an error.
-#if __cplusplus < 201703L
-    #error "C++17 or later is required for this string format function."
-#else
     namespace detail {
         inline void format_helper(std::stringstream &ss, const std::string &format) {
             ss << format; // Base case: no more placeholders
@@ -632,7 +627,6 @@ namespace utils {
         detail::format_helper(ss, fmt, args...);
         return ss.str();
     }
-#endif
 
     template<typename IntegerType>
     std::string group_digit(IntegerType number, char separator = ',') {
