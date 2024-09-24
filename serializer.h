@@ -72,6 +72,11 @@ namespace utils {
             _STD memset(buffer.data(), 0x0, m_size);
         }
 
+        ~wmemory_t() {
+            buffer.clear();
+            m_size = 0, m_lens = 0;
+        }
+
         /**
          * Constructs a `wmemory_t` object from the provided vector of bytes.
          *
